@@ -174,90 +174,55 @@ window.addEventListener('resize', () => {
   }, 150); // 150ms de delay para estabilizar viewport
 });
 
-gsap.registerPlugin(ScrollTrigger)
+const isMobile = () => window.innerWidth <= 930
 
-ScrollTrigger.matchMedia({
+document.querySelectorAll(".merchant").forEach((merchant) => {
+  const elems = merchant.querySelectorAll(".character, .name__character")
+  const text = merchant.querySelector(".text__character")
 
-  // MOBILE ≤ 930px
-  "(max-width: 930px)": () => {
-    document.querySelectorAll(".merchant").forEach(merchant => {
-      const elems = merchant.querySelectorAll(".character, .name__character")
-      const text = merchant.querySelector(".text__character")
+  // imagem + nome
+  gsap.fromTo(
+    elems,
+    {
+      x: isMobile()
+        ? 0
+        : merchant.classList.contains("left__characters")
+        ? -150
+        : 150,
+      y: isMobile() ? 100 : 0,
+      opacity: 0
+    },
+    {
+      x: 0,
+      y: 0,
+      opacity: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: merchant,
+        start: "top 90%",
+        end: "top 40%",
+        scrub: true
+      }
+    }
+  )
 
-      // imagem + nome
-      gsap.fromTo(
-        elems,
-        { x: 0, y: 50, opacity: 0 },
-        {
-          x: 0, y: 0, opacity: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: merchant,
-            start: "top 95%",
-            end: "top 60%",
-            scrub: true
-          }
-        }
-      )
-
-      // texto
-      gsap.fromTo(
-        text,
-        { y: 50, opacity: 0 },
-        {
-          y: 0, opacity: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: merchant,
-            start: "top 90%",
-            end: "top 50%",
-            scrub: true
-          }
-        }
-      )
-    })
-  },
-
-  // DESKTOP > 930px
-  "(min-width: 931px)": () => {
-    document.querySelectorAll(".merchant").forEach(merchant => {
-      const elems = merchant.querySelectorAll(".character, .name__character")
-      const text = merchant.querySelector(".text__character")
-
-      const xOffset = merchant.classList.contains("left__characters") ? -150 : 150
-
-      // imagem + nome
-      gsap.fromTo(
-        elems,
-        { x: xOffset, y: 0, opacity: 0 },
-        {
-          x: 0, y: 0, opacity: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: merchant,
-            start: "top 90%",
-            end: "top 40%",
-            scrub: true
-          }
-        }
-      )
-
-      // texto
-      gsap.fromTo(
-        text,
-        { y: 100, opacity: 0 },
-        {
-          y: 0, opacity: 1,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: merchant,
-            start: "top 85%",
-            end: "top 30%",
-            scrub: true
-          }
-        }
-      )
-    })
-  }
-
+  // texto
+  gsap.fromTo(
+    text,
+    {
+      y: 100,
+      opacity: 0
+    },
+    {
+      y: 0,
+      opacity: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: merchant,
+        start: "top 85%",
+        end: "top 30%",
+        scrub: true
+      }
+    }
+  )
 })
