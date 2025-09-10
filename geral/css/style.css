@@ -309,12 +309,10 @@ img {
 }
 
 /* REGIÕES */
-/* === CSS atualizado para estabilidade === */
-.scene {
+div.scene {
     width: 100%;
     height: 100vh;
     position: relative;
-    overflow: hidden; /* evita que elementos saiam da cena */
 }
 
 .bg__region {
@@ -332,30 +330,31 @@ img {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    /* centraliza horizontal */
     color: white;
     text-align: center;
     z-index: 2;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    text-shadow: 8px 8px 10px rgba(0, 0, 0, 0.7);
     font-weight: 400;
     width: auto;
+    /* deixa o tamanho natural do texto */
     max-width: 90%;
-    box-sizing: border-box;
+    /* só limita pra não ultrapassar a tela */
 }
 
 .title__region {
     top: 15%;
-    font-size: clamp(1.5rem, 4vw, 2.5rem); /* responsivo */
+    font-size: 2rem;
     max-width: 600px;
+    width: 80%;
 }
 
 .text__region {
     bottom: 15%;
-    font-size: clamp(1rem, 3vw, 1.5rem); /* responsivo */
+    font-size: 1.3rem;
     max-width: 800px;
     width: 90%;
     background-color: hsla(220, 15%, 12%, 0.4);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
 }
 
 
@@ -716,7 +715,7 @@ img {
 
 .footer__social {
     display: flex;
-    font-size: 2.5rem;
+    font-size: 3rem;
     gap: 25px;
 }
 
