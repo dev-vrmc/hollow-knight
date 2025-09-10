@@ -309,11 +309,12 @@ img {
 }
 
 /* REGIÕES */
-
+/* === CSS atualizado para estabilidade === */
 .scene {
     width: 100%;
     height: 100vh;
     position: relative;
+    overflow: hidden; /* evita que elementos saiam da cena */
 }
 
 .bg__region {
@@ -331,32 +332,32 @@ img {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    /* centraliza horizontal */
     color: white;
     text-align: center;
     z-index: 2;
-    text-shadow: 8px 8px 10px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     font-weight: 400;
     width: auto;
-    /* deixa o tamanho natural do texto */
     max-width: 90%;
-    /* só limita pra não ultrapassar a tela */
+    box-sizing: border-box;
 }
 
 .title__region {
     top: 15%;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* responsivo */
     max-width: 600px;
-    width: 80%;
 }
 
 .text__region {
     bottom: 15%;
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 3vw, 1.5rem); /* responsivo */
     max-width: 800px;
     width: 90%;
     background-color: hsla(220, 15%, 12%, 0.4);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
 }
+
 
 /* ============== PERSONAGENS =============== */
 
@@ -480,14 +481,15 @@ img {
     margin-top: 20px;
 }
 
-.home__content, .home__hollow {
+.home__content,
+.home__hollow {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.home__content >p {
+.home__content>p {
     font-size: 1.2rem;
     width: 100%;
     max-width: 700px;
@@ -524,8 +526,8 @@ img {
     text-align: center
 }
 
-.home__hollow > img{
-        width: 100%;
+.home__hollow>img {
+    width: 100%;
     max-width: 300px;
     height: 100%;
     max-height: 500px;
@@ -534,7 +536,7 @@ img {
     margin: 0 0 2rem;
 }
 
-.home__hollow > p{
+.home__hollow>p {
     font-size: 1.2rem;
     width: 100%;
     max-width: 700px;
@@ -544,7 +546,7 @@ img {
     padding: 20px;
 }
 
-.home__hollow{
+.home__hollow {
     margin-bottom: 20px
 }
 
@@ -552,72 +554,72 @@ img {
 
 /* Base */
 .silksong__main {
-  background: #FF8548;
-  padding: 2rem 1rem;
-  line-height: 1.6;
+    background: #FF8548;
+    padding: 2rem 1rem;
+    line-height: 1.6;
 }
 
 .silksong__container {
-  max-width: 1000px;
-  margin: 0 auto;
-  
+    max-width: 1000px;
+    margin: 0 auto;
+
 }
 
 .silksong__title {
-  font-size: 2.5em;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  color: var(--title-color);
-  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-  font-family: var(--title-font);
-  padding: 20px;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--title-color);
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    font-family: var(--title-font);
+    padding: 20px;
 }
 
 .silksong__text {
-  font-size: 1.2rem;
-  text-align: justify;
-  color: var(--text-color-light);
-  margin-bottom: 3rem;
+    font-size: 1.2rem;
+    text-align: justify;
+    color: var(--text-color-light);
+    margin-bottom: 3rem;
 }
 
 .silksong__profile {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2rem;
-  background: #400A18;
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 12px #400A1880;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    background: #400A18;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px #400A1880;
 }
 
 .silksong__img {
-  max-width: 220px;
-  flex-shrink: 0;
+    max-width: 220px;
+    flex-shrink: 0;
 }
 
 .silksong__name {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-  color: #A61414;
-  text-align: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #A61414;
+    text-align: center;
 }
 
 .silksong__desc {
-  font-size: 1rem;
+    font-size: 1rem;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-  .silksong__profile {
-    flex-direction: column;
-    text-align: center;
-  }
+    .silksong__profile {
+        flex-direction: column;
+        text-align: center;
+    }
 
-  .silksong__img {
-    max-width: 180px;
-  }
+    .silksong__img {
+        max-width: 180px;
+    }
 }
 
 /* ============= FOOTER =============== */
@@ -766,14 +768,14 @@ img {
 }
 
 ::-webkit-scrollbar {
-  width: .5rem;
-  background-color: var(--container-color);
+    width: .5rem;
+    background-color: var(--container-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--first-color);
+    background-color: var(--first-color);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--first-color-light);
+    background-color: var(--first-color-light);
 }

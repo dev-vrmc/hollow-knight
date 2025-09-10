@@ -129,6 +129,7 @@
         flex-direction: column-reverse;
         align-items: center;
     }
+
     .home__hollow {
         flex-direction: column-reverse;
         align-items: center;
@@ -138,10 +139,12 @@
         font-size: 1rem;
         padding: 10px;
     }
+
     .silksong__text {
         font-size: 1rem;
         padding: 10px;
     }
+
     .home__content>p {
         font-size: 1rem;
         padding: 10px;
@@ -283,10 +286,12 @@
         font-size: 1rem;
         padding: 20px;
     }
-        .silksong__text {
+
+    .silksong__text {
         font-size: 1rem;
         padding: 10px;
     }
+
     .home__content {
         flex-direction: column-reverse;
         align-items: center;
@@ -406,10 +411,12 @@
         flex-direction: column-reverse;
         align-items: center;
     }
-      .silksong__text {
+
+    .silksong__text {
         padding: 10px;
     }
-    .main{
+
+    .main {
         margin-top: 90px;
     }
 }
