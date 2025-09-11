@@ -89,96 +89,86 @@ gsap.fromTo('.background1', {
   }
 );
 
+const scenes = document.querySelectorAll(".scene");
 
-gsap.registerPlugin(ScrollTrigger);
+scenes.forEach((scene) => {
+  const title = scene.querySelector(".title__region");
+  const text  = scene.querySelector(".text__region");
 
-const initScenes = () => {
-  const scenes = gsap.utils.toArray('.scene');
+  // fade geral da cena
+  gsap.fromTo(
+    scene,
+    { opacity: 0.1, duration: 1, },
+    {
+      opacity: 1,
+      scrollTrigger: {
+        trigger: scene,
+        start: "top center",
+        end: "bottom center",
+        scrub: true,
+      }
+    }
+  );
 
-  scenes.forEach(scene => {
-    const title = scene.querySelector('.title__region');
-    const text = scene.querySelector('.text__region');
-
-    // Fade da cena
-    gsap.fromTo(scene,
-      { opacity: 0.25 },
+  // título vindo da esquerda
+  if (title) {
+    gsap.fromTo(
+      title,
+      { x: -800, opacity: 1 },
       {
+        x: 0,
         opacity: 1,
         scrollTrigger: {
           trigger: scene,
-          start: 'top 80%',
-          end: 'top 40%',
-          scrub: true
+          start: "top 100%",
+          end: "bottom 100%",
+          scrub: true,
         }
       }
     );
+  }
 
-    const calcXOffset = (side) => {
-      // 50% da largura da cena
-      return side === 'left' ? '-50%' : '50%';
-    };
-
-    const calcYOffset = () => window.innerWidth < 768 ? -20 : -30;
-
-    // Título
-    if(title){
-      gsap.fromTo(title,
-        { x: calcXOffset('left'), y: calcYOffset(), opacity: 0 },
-        {
-          x: 0, y: 0, opacity: 1,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: scene,
-            start: 'top 85%',
-            end: 'top 50%',
-            scrub: true
-          }
+  // texto vindo da direita
+  if (text) {
+    gsap.fromTo(
+      text,
+      { x: 800, opacity: 1 },
+      {
+        x: 0,
+        opacity: 1,
+        scrollTrigger: {
+          trigger: scene,
+          start: "top 20%",
+          end: "bottom 100%",
+          scrub: true,
         }
-      );
-    }
-
-    // Texto
-    if(text){
-      gsap.fromTo(text,
-        { x: calcXOffset('right'), y: calcYOffset(), opacity: 0 },
-        {
-          x: 0, y: 0, opacity: 1,
-          ease: 'power2.out',
-          delay: 0.1,
-          scrollTrigger: {
-            trigger: scene,
-            start: 'top 85%',
-            end: 'top 50%',
-            scrub: true
-          }
-        }
-      );
-    }
-  });
-}
-
-// Inicializa ao carregar
-window.addEventListener('load', () => {
-  initScenes();
-  ScrollTrigger.refresh();
+      }
+    );
+  }
 });
 
-// Atualiza ao redimensionar com pequeno delay para garantir estabilidade
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    ScrollTrigger.getAll().forEach(t => t.kill());
-    initScenes();
-    ScrollTrigger.refresh();
-  }, 150); // 150ms de delay para estabilizar viewport
-});
+gsap.fromTo('.background1', {
+  y: 0,
+},
+  {
+      y: 500,
+      ease: 'linear',
+      scrollTrigger: {
+          trigger: '.background1', 
+          start: '0',
+          end: '+800',
+          scrub: true,
+      }
+  }
+);
 
-const isMobile = () => window.innerWidth <= 930
+gsap.registerPlugin(ScrollTrigger);
+
+const isMobile = () => window.innerWidth <= 930;
 
 document.querySelectorAll(".merchant").forEach((merchant) => {
-  const elems = merchant.querySelectorAll(".character, .name__character")
-  const text = merchant.querySelector(".text__character")
+  const elems = merchant.querySelectorAll(".character, .name__character");
+  const text  = merchant.querySelector(".text__character");
 
   // imagem + nome
   gsap.fromTo(
@@ -204,15 +194,12 @@ document.querySelectorAll(".merchant").forEach((merchant) => {
         scrub: true
       }
     }
-  )
+  );
 
   // texto
   gsap.fromTo(
     text,
-    {
-      y: 100,
-      opacity: 0
-    },
+    { y: 100, opacity: 0 },
     {
       y: 0,
       opacity: 1,
@@ -224,5 +211,5 @@ document.querySelectorAll(".merchant").forEach((merchant) => {
         scrub: true
       }
     }
-  )
-})
+  );
+});
